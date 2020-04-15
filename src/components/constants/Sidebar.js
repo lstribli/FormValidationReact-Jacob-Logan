@@ -3,7 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 export default function Sidebar(props) {
   let folderLinks = props.state.folders.map(folder => (
-  <span className="nav-item"><NavLink key={folder.id} to={`/folders/${folder.id}`} activeClassName="selected">{folder.name}</NavLink></span>
+  <span key={folder.id} className="nav-item">
+    <NavLink to={`/folders/${folder.id}`} activeClassName="selected">
+      {folder.name}
+    </NavLink>
+    </span>
   ))
 
   return(

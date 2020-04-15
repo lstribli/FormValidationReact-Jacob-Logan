@@ -10,14 +10,14 @@ export default function FolderList(props) {
   let displayNotes = props.state.notes.filter(note => (
     note.folderId === folderToDisplay.id
   )).map(note => (
-    <Note 
-        key={note.id}
-        id={note.id}
-        title={note.name}
-        modified={note.modified}/>
+    <Note
+      key={note.id}
+      id={note.id}
+      title={note.name}
+      modified={note.modified} />
   ))
 
-  return(
+  return (
     <div className="main">
       {displayNotes}
     </div>

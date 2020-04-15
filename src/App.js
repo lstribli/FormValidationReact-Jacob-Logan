@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import Main from './components/Main';
 import FolderList from './components/FolderList';
-import Note from './components/Note';
+import ExpandedNote from './components/ExpandedNote';
 import Header from './components/constants/Header';
 import Sidebar from './components/constants/Sidebar';
 
@@ -132,21 +132,24 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Sidebar state={this.state}/>
-        <Switch>
-          <Route 
-            exact path='/' 
-            render={(props) => <Main {...props} notes={this.state.notes} />}
-          />
-          <Route 
-            exact path='/folders/:id'
-            render={(props) => <FolderList {...props}  state={this.state} />}
-          />
-          <Route 
-            exact path='/note' 
-            component={Note}
-          />
-        </Switch>
+        <div className="flex-divide">
+          <Sidebar state={this.state} />
+          <Switch>
+            <Route
+              exact path='/'
+              render={(props) => <Main {...props} notes={this.state.notes} />}
+            />
+            <Route
+              exact path='/folders/:id'
+              render={(props) => <FolderList {...props} state={this.state} />}
+            />
+            <Route
+              exact path='/note/:id'
+              render={(props) => <ExpandedNote {...props} state={this.state} />}
+            // component={ExpandedNote}
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

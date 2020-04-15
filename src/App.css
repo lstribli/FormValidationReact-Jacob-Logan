@@ -1,3 +1,10 @@
 .note-items {
   margin-left: 35%;
 }
+
+.flex-divide {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  justify-content: center;
+}
