@@ -5,13 +5,15 @@ export default class Main extends React.Component {
   static contextType = Context;
 
   render() {
-    const { state } = this.context
-    let displayNotes = state.notes.map(note => (
+    const { notes } = this.context
+    let displayNotes = notes.map(note => (
       <Note
         key={note.id}
         id={note.id}
         title={note.name}
-        modified={note.modified} />
+        modified={note.modified}
+        history={this.props.history}
+        />
     ))
 
     return (
