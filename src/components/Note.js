@@ -14,7 +14,7 @@ export default function Note(props) {
     <div className="main">
       <div id={props.id} className="note-item" >
         <h2>{props.title}</h2>
-        <Link to={`note/${props.id}`}>Expand Me</Link>
+        <Link to={`/note/${props.id}`}>Expand Me</Link>
         <p>{dateInHuman}</p>
       </div>
     </div>
