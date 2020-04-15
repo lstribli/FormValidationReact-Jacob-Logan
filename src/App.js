@@ -6,6 +6,7 @@ import FolderList from './components/FolderList';
 import ExpandedNote from './components/ExpandedNote';
 import Header from './components/constants/Header';
 import Sidebar from './components/constants/Sidebar';
+import Context from './components/constants/userContext';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -129,28 +130,35 @@ export default class App extends React.Component {
   }
 
   render() {
+
     return (
-      <div className="App">
-        <Header />
-        <div className="flex-divide">
-          <Sidebar state={this.state} />
-          <Switch>
-            <Route
-              exact path='/'
-              render={(props) => <Main {...props} notes={this.state.notes} />}
-            />
-            <Route
-              exact path='/folders/:id'
-              render={(props) => <FolderList {...props} state={this.state} />}
-            />
-            <Route
-              exact path='/note/:id'
-              render={(props) => <ExpandedNote {...props} state={this.state} />}
-            // component={ExpandedNote}
-            />
-          </Switch>
+      <Context.Provider value={{
+        state: this.state,
+        match: this.state.props,
+      }}>
+
+        <div className="App">
+          <Header />
+          <div className="flex-divide">
+            <Sidebar state={this.state} />
+            <Switch>
+              <Route
+                exact path='/'
+                render={(props) => <Main {...props} notes={this.state.notes} />}
+              />
+              <Route
+                exact path='/folders/:id'
+                render={(props) => <FolderList {...props} state={this.state} />}
+              />
+              <Route
+                exact path='/note/:id'
+                component={ExpandedNote}
+              />
+            </Switch>
+          </div>
         </div>
-      </div>
+
+      </Context.Provider>
     );
   }
 }
