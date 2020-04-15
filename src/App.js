@@ -133,8 +133,9 @@ export default class App extends React.Component {
 
     return (
       <Context.Provider value={{
-        state: this.state,
-        match: this.state.props,
+        folders: this.state.folders,
+        notes: this.state.notes
+        // match: this.state.props,
       }}>
 
         <div className="App">
@@ -144,12 +145,13 @@ export default class App extends React.Component {
             <Switch>
               <Route
                 exact path='/'
-                render={(props) => <Main {...props} notes={this.state.notes} />}
+                component={Main}
               />
               <Route
                 exact path='/folders/:id'
-                render={(props) => <FolderList {...props} state={this.state} />}
+                component={FolderList}
               />
+
               <Route
                 exact path='/note/:id'
                 component={ExpandedNote}

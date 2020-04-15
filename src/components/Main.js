@@ -5,7 +5,8 @@ export default class Main extends React.Component {
   static contextType = Context;
 
   render() {
-    let displayNotes = this.props.notes.map(note => (
+    const { state } = this.context
+    let displayNotes = state.notes.map(note => (
       <Note
         key={note.id}
         id={note.id}
@@ -19,5 +20,4 @@ export default class Main extends React.Component {
       </div>
     )
   }
-
 }

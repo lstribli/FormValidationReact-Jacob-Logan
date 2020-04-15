@@ -5,12 +5,14 @@ import Context from './constants/userContext'
 export default class FolderList extends React.Component {
   static contextType = Context;
 
+
   render() {
-    let folderToDisplay = this.props.state.folders.find(folder => (
+    const { folders, notes } = this.context
+    let folderToDisplay = folders.find(folder => (
       folder.id === this.props.match.params.id
     ))
 
-    let displayNotes = this.props.state.notes.filter(note => (
+    let displayNotes = notes.filter(note => (
       note.folderId === folderToDisplay.id
     )).map(note => (
       <Note

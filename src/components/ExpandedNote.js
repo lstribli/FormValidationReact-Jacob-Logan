@@ -4,11 +4,12 @@ export default class ExpandedNote extends React.Component {
   static contextType = Context;
 
   render() {
-    const { state } = this.context
+    const { notes } = this.context
+    console.log(this.context)
+    let note = notes.find(note =>
 
-    let note = state.notes.find(note => (
       note.id === this.props.match.params.id
-    ))
+    )
 
     const date = new Date(note.modified);
     const dayOfMonth = date.getUTCDate();
@@ -16,9 +17,6 @@ export default class ExpandedNote extends React.Component {
     const monthString = months[date.getMonth()];
     const year = date.getUTCFullYear();
     let dateInHuman = `${dayOfMonth} ${monthString} ${year}`;
-
-
-
 
     return (
       <div className="note-item">

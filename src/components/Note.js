@@ -4,6 +4,8 @@ import Context from './constants/userContext';
 export default class Note extends React.Component {
   static contextType = Context;
   render() {
+    // const { state } = this.context
+    console.log(this.context)
     const date = new Date(this.props.modified);
     const dayOfMonth = date.getUTCDate();
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
