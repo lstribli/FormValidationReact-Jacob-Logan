@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Context from './userContext';
+import AddFolder from '../AddFolder';
 export default class Sidebar extends React.Component {
   static contextType = Context;
   render() {
@@ -18,7 +19,7 @@ export default class Sidebar extends React.Component {
         <nav>
           {folderLinks}
         </nav>
-        <button>Add Folder</button>
+        <AddFolder />
       </div>
 
     )
