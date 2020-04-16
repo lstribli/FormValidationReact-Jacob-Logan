@@ -79,7 +79,7 @@ export default class App extends React.Component {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({name:folder})
+    body: JSON.stringify({ name: folder })
   })
     .then(res => {
       if (res.ok) {
@@ -89,19 +89,54 @@ export default class App extends React.Component {
         throw Error();
       }
     })
-    .then(response => this.setState({folders: [...this.state.folders, response]}))
+    .then(response => this.setState({ folders: [...this.state.folders, response] }))
     .catch(err => console.log(err.message));
+  //build more to addnote component, as its own component
+  //fetch('http://localhost:9090/notes',
+  handleAddNote = (event) => {
+    event.preventDefault();
+    fetch('http://localhost:9090/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: event.target.noteName.value,
+        folderId: event.target.folderId.value,
+        content: event.target.content.value,
+        modified: Date.now()
 
+
+      })
+    })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        else {
+          throw Error();
+        }
+      })
+      .then(res => {
+        console.log('RESPONSE', res)
+        return res
+      })
+      .then(response => this.setState({ notes: [...this.state.notes, response] })
+
+      )
+      .catch(err => console.log(err.message));
+  }
 
   render() {
-    console.log('this.state.folders:', this.state.notes);
+    console.log('this.state.notes', this.state.notes);
 
     return (
       <Context.Provider value={{
         folders: this.state.folders,
         notes: this.state.notes,
         handleDelete: this.handleDelete,
-        handleAddFolder: this.handleAddFolder
+        handleAddFolder: this.handleAddFolder,
+        handleAddNote: this.handleAddNote
       }}>
 
         <div className="App">

@@ -9,7 +9,7 @@ export default class ExpandedNote extends React.Component {
     let note = notes.find(note =>
 
       note.id === this.props.match.params.id
-    )
+    ) || {}
 
     const date = new Date(note.modified);
     const dayOfMonth = date.getUTCDate();
@@ -25,10 +25,10 @@ export default class ExpandedNote extends React.Component {
         <p>{note.content}</p>
       </div>
     )
-    
+
   }
 
 }
 
 
-ExpandedNote.defaultProps = {notes: {}}
+ExpandedNote.defaultProps = { notes: {} }

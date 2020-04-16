@@ -22,6 +22,7 @@ export default class Note extends React.Component {
         </div>
         <button onClick={(e) => { handleDelete(this.props.id); this.props.history.push('/') }}
         >Delete me!</button>
+
       </div>
     )
   }

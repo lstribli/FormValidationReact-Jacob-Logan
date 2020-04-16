@@ -13,12 +13,13 @@ export default class Main extends React.Component {
         title={note.name}
         modified={note.modified}
         history={this.props.history}
-        />
+      />
     ))
 
     return (
       <div className="main">
         {displayNotes}
+
       </div>
     )
   }

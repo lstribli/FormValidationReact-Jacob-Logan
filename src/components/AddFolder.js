@@ -5,7 +5,6 @@ import Context from './constants/userContext';
 export default class AddFolder extends React.Component {
   static contextType = Context;
   state = {
-    test: '',
     name: {
       value: '',
       touched: false
@@ -23,14 +22,19 @@ export default class AddFolder extends React.Component {
     this.setState({ name: { value: name } })
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    const { name } = this.state
+
+  }
   render() {
-    // console.log('name val:', this.state.name.value)
     const { handleAddFolder } = this.context;
+
     return (
       <div>
-        <form >
+        <form onSubmit={(e) => this.handleSubmit(e)}>
           <label htmlFor="addFolder"><h2>Folder Name</h2></label>
-          <input id="addFolder" type="text" value={this.state.name.value} placeholder="input folder name" onChange={e => this.setState({name:{value: e.target.value}})}></input>
+          <input id="addFolder" type="text" value={this.state.name.value} placeholder="input folder name" onChange={e => this.updateName(e.target.value)}></input>
         </form>
         {/* <div>  <Link to={`/folder/${this.props}`}>Expand Me</Link></div> */}
         <button onClick={(e) => { handleAddFolder(this.state.name.value) }}>Add Folder</button>

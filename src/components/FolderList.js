@@ -1,13 +1,13 @@
 import React from 'react';
 import Note from './Note';
 import Context from './constants/userContext'
-
+import AddNote from './AddNote'
 export default class FolderList extends React.Component {
   static contextType = Context;
 
 
   render() {
-    console.log('context FOLDERLIST:', this.context)
+
     const { folders, notes } = this.context
     let folderToDisplay = folders.find(folder => (
       folder.id === this.props.match.params.id
@@ -20,14 +20,18 @@ export default class FolderList extends React.Component {
         key={note.id}
         id={note.id}
         title={note.name}
-        modified={note.modified} 
+        modified={note.modified}
         history={this.props.history}
-        />
+      />
+
     ))
 
     return (
       <div className="main">
+        <h2>test</h2>
         {displayNotes}
+        <AddNote />
+
       </div>
     )
   }
