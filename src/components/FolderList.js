@@ -7,6 +7,7 @@ export default class FolderList extends React.Component {
 
 
   render() {
+    console.log('context FOLDERLIST:', this.context)
     const { folders, notes } = this.context
     let folderToDisplay = folders.find(folder => (
       folder.id === this.props.match.params.id

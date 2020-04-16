@@ -74,12 +74,12 @@ export default class App extends React.Component {
   }
 
 
-  handleAddFolder = (folders) => fetch('http://localhost:9090/folders', {
+  handleAddFolder = (folder) => fetch('http://localhost:9090/folders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(folders)
+    body: JSON.stringify({name:folder})
   })
     .then(res => {
       if (res.ok) {
@@ -89,12 +89,13 @@ export default class App extends React.Component {
         throw Error();
       }
     })
-    .then(res => { console.log(res); return res })
-    .then(response => this.setState({ folders: response }))
+    .then(response => this.setState({folders: [...this.state.folders, response]}))
     .catch(err => console.log(err.message));
 
 
   render() {
+    console.log('this.state.folders:', this.state.notes);
+
     return (
       <Context.Provider value={{
         folders: this.state.folders,

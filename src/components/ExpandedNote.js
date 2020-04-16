@@ -25,5 +25,10 @@ export default class ExpandedNote extends React.Component {
         <p>{note.content}</p>
       </div>
     )
+    
   }
+
 }
+
+
+ExpandedNote.defaultProps = {notes: {}}

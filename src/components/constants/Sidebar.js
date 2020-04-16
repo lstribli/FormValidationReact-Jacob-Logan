@@ -5,7 +5,8 @@ import AddFolder from '../AddFolder';
 export default class Sidebar extends React.Component {
   static contextType = Context;
   render() {
-    const { folders } = this.context
+    const { folders, notes } = this.context
+    console.log('context', Object.values(this.context))
     let folderLinks = folders.map(folder => (
       <span key={folder.id} className="nav-item">
         <NavLink to={`/folders/${folder.id}`} activeClassName="selected">
