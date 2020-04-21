@@ -30,7 +30,6 @@ export default class FolderList extends React.Component {
       <div className="main">
         <h2>test</h2>
         {displayNotes}
-        <AddNote />
 
       </div>
     )

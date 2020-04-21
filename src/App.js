@@ -9,9 +9,11 @@ import Sidebar from './components/constants/Sidebar';
 import Context from './components/constants/userContext';
 import AddFolder from './components/AddFolder';
 // import AddNote from './components/AddNote';
+import ErrorBoundary from './components/constants/ErrorBoundary';
 
 
 export default class App extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -142,26 +144,28 @@ export default class App extends React.Component {
         <div className="App">
           <Header />
           <div className="flex-divide">
-            <Sidebar state={this.state} />
-            <Switch>
-              <Route
-                exact path='/'
-                component={Main}
-              />
-              <Route
-                exact path='/folders/:id'
-                component={FolderList}
-              />
+            <ErrorBoundary>
+              <Sidebar state={this.state} />
+              <Switch>
+                <Route
+                  exact path='/'
+                  component={Main}
+                />
+                <Route
+                  exact path='/folders/:id'
+                  component={FolderList}
+                />
 
-              <Route
-                exact path='/note/:id'
-                component={ExpandedNote}
-              />
-              <Route
-                exact path='/folders/:id'
-                component={AddFolder}
-              />
-            </Switch>
+                <Route
+                  exact path='/note/:id'
+                  component={ExpandedNote}
+                />
+                <Route
+                  exact path='/folders/:id'
+                  component={AddFolder}
+                />
+              </Switch>
+            </ErrorBoundary>
           </div>
         </div>
 
